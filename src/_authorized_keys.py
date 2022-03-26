@@ -1,9 +1,10 @@
-import os
+import os, stat
+import shutil
 from typing import Final
 from sshpubkeys import AuthorizedKeysFile
 
 
-_FILE_NAME: Final[str] = os.path.expanduser('~/.ssh/authorized_keys') 
+_FILE_NAME: Final[str] = '/home/ssm-user/.ssh/authorized_keys' 
 
 
 class AuthorizedKeys:
@@ -19,7 +20,8 @@ class AuthorizedKeys:
 
     def __exit__(self, exception_type, exception_value, traceback):
         with open(_FILE_NAME, 'w') as f:
-            payload = '\n'.join((key.keydata for key in  self._keys.values())) 
+            payload = '\n'.join((f"{key.keydata}" for key in self._keys.values()))
             f.write(payload)
-        os.chmod(_FILE_NAME, 600)
+        shutil.chown(_FILE_NAME, 'ssm-user', 'ssm-user')
+        os.chmod(_FILE_NAME, stat.S_IREAD)
 
