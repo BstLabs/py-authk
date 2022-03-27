@@ -1,4 +1,4 @@
-import os, stat
+import os
 import shutil
 from typing import Final
 from sshpubkeys import AuthorizedKeysFile
@@ -23,5 +23,5 @@ class AuthorizedKeys:
             payload = '\n'.join((f"{key.keydata}" for key in self._keys.values()))
             f.write(payload)
         shutil.chown(_FILE_NAME, 'ssm-user', 'ssm-user')
-        os.chmod(_FILE_NAME, stat.S_IREAD)
+        os.chmod(_FILE_NAME, 0644)
 
