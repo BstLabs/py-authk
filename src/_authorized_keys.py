@@ -23,5 +23,5 @@ class AuthorizedKeys:
             payload = '\n'.join((f"{key.keydata}" for key in self._keys.values()))
             f.write(payload)
         shutil.chown(_FILE_NAME, 'ssm-user', 'ssm-user')
-        os.chmod(_FILE_NAME, 0644)
+        os.chmod(_FILE_NAME, 0o644)
 
