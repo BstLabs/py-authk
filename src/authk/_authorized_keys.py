@@ -9,7 +9,7 @@ _FILE_NAME: Final[str] = "/home/ssm-user/.ssh/authorized_keys"
 
 class AuthorizedKeys:
     def __enter__(self):
-        self._keys = dict()
+        self._keys = {}
         try:
             authk = AuthorizedKeysFile(open(_FILE_NAME))
             for key in authk.keys:
