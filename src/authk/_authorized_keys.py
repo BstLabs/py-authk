@@ -1,3 +1,4 @@
+import contextlib
 import os
 import shutil
 from typing import Final
@@ -10,12 +11,10 @@ _FILE_NAME: Final[str] = "/home/ssm-user/.ssh/authorized_keys"
 class AuthorizedKeys:
     def __enter__(self):
         self._keys = {}
-        try:
+        with contextlib.suppress(FileNotFoundError):
             authk = AuthorizedKeysFile(open(_FILE_NAME))
             for key in authk.keys:
                 self._keys[key.comment] = key
-        except FileNotFoundError:
-            pass
         return self._keys
 
     def __exit__(self, exception_type, exception_value, traceback):
