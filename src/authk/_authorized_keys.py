@@ -1,3 +1,7 @@
+"""
+Deals with file operations. Adds functionality for context manager.
+"""
+
 import contextlib
 import os
 import shutil
@@ -5,21 +9,29 @@ from typing import Final
 
 from sshpubkeys import AuthorizedKeysFile
 
-_FILE_NAME: Final[str] = "/home/ssm-user/.ssh/authorized_keys"
+_FILE_NAME: Final[str] = os.path.expanduser("~/ssm-user/.ssh/authorized_keys")
 
 
 class AuthorizedKeys:
-    def __enter__(self):
+    """
+    Class for handling authorized_keys file.
+    """
+
+    def __init__(self):
         self._keys = {}
+
+    def __enter__(self):
         with contextlib.suppress(FileNotFoundError):
-            authk = AuthorizedKeysFile(open(_FILE_NAME))
+            authk = AuthorizedKeysFile(open(_FILE_NAME, encoding="utf-8"))
             for key in authk.keys:
                 self._keys[key.comment] = key
         return self._keys
 
     def __exit__(self, exception_type, exception_value, traceback):
-        with open(_FILE_NAME, "w") as f:
+        with open(_FILE_NAME, "w", encoding="utf-8") as file:
             payload = "\n".join((f"{key.keydata}" for key in self._keys.values()))
-            f.write(payload)
+            file.write(payload)
         shutil.chown(_FILE_NAME, "ssm-user", "ssm-user")
         os.chmod(_FILE_NAME, 0o644)
+        if all([exception_type, exception_value, traceback]):
+            print(exception_type, exception_value, traceback, end="\n")

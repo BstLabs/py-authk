@@ -17,8 +17,8 @@ dependencies = [
 
 
 [project.urls]
-# Source = "https://github.com/bstlabs/py-clvm"
-# Home = "https://github.com/bstlabs/py-clvm"
+# Source = "https://github.com/bstlabs/authk"
+# Home = "https://github.com/bstlabs/authk"
 
 
 [project.optional-dependencies]
