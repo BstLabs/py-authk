@@ -1,6 +1,10 @@
-from sshpubkeys import SSHKey
+"""
+Adds key to authorized_keys
+"""
 
-from authk._authorized_keys import AuthorizedKeys
+
+from _authorized_keys import AuthorizedKeys
+from sshpubkeys import SSHKey
 
 
 def add(key_txt: str) -> None:
@@ -14,7 +18,7 @@ def add(key_txt: str) -> None:
         None
 
     """
-    key = SSHKey(key_txt)
+    key = SSHKey(key_txt, strict=True)
     with AuthorizedKeys() as aks:
         aks[key.comment] = key
-    print("Key succesfully added")
+    print(f"{key.comment} succesfully added")
