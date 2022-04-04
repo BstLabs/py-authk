@@ -9,7 +9,10 @@ from typing import Final
 
 from sshpubkeys import AuthorizedKeysFile
 
-_FILE_NAME: Final[str] = os.path.expanduser("~/ssm-user/.ssh/authorized_keys")
+_FILE_NAME: Final[str] = os.path.expanduser("~/.ssh/authorized_keys")
+
+# TODO: check for /.ssh directory existence
+# TODO: check for authorized_keys permissions
 
 
 class AuthorizedKeys:
@@ -28,8 +31,8 @@ class AuthorizedKeys:
         return self._keys
 
     def __exit__(self, exception_type, exception_value, traceback):
-        with open(_FILE_NAME, "w", encoding="utf-8") as file:
-            payload = "\n".join((f"{key.keydata}" for key in self._keys.values()))
+        with open(_FILE_NAME, "a", encoding="utf-8") as file:
+            payload = "\n".join([str(key.keydata) for key in self._keys.values()])
             file.write(payload)
         shutil.chown(_FILE_NAME, "ssm-user", "ssm-user")
         os.chmod(_FILE_NAME, 0o644)

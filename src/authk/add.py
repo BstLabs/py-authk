@@ -3,8 +3,9 @@ Adds key to authorized_keys
 """
 
 
-from authk._authorized_keys import AuthorizedKeys
 from sshpubkeys import SSHKey
+
+from authk._authorized_keys import AuthorizedKeys
 
 
 def add(key_txt: str) -> None:
@@ -20,5 +21,6 @@ def add(key_txt: str) -> None:
     """
     key = SSHKey(key_txt, strict=True)
     with AuthorizedKeys() as aks:
-        aks[key.comment] = key
+        if key.keydata not in aks.items():
+            aks[key.comment] = key
     print(f"{key.comment} succesfully added")
