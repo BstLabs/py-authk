@@ -18,6 +18,7 @@ dependencies = [
 
 [project.urls]
 Source = "https://github.com/bstlabs/py-authk"
+Home = "https://github.com/bstlabs/authk"
 
 
 [project.optional-dependencies]
