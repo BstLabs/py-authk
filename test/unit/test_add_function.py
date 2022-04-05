@@ -5,7 +5,6 @@ Unit tests for add function
 
 import os
 from os import path
-from pathlib import Path
 from time import sleep
 from unittest import TestCase, main
 
@@ -32,7 +31,7 @@ class TestAdd(TestCase):
     def setUp(self):
         print("setting up...")
         self._key = _KEY_TEXT
-        Path(_FILE_NAME).touch()
+        os.close(os.open(_FILE_NAME, os.O_CREAT))
         with open(_FILE_NAME, "w+", encoding="utf-8"):
             print(f'{_FILE_NAME.split("/")[-1]} created')
 

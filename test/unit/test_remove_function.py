@@ -4,7 +4,6 @@ Unit tests for remove function
 
 import os
 from os import path
-from pathlib import Path
 from unittest import TestCase, main
 
 from authk._authorized_keys import _FILE_NAME
@@ -29,7 +28,7 @@ class TestRemove(TestCase):
     """
 
     def setUp(self):
-        Path(_FILE_NAME).touch()
+        os.close(os.open(_FILE_NAME, os.O_CREAT))
         add(_KEY_TEXT)
         self._key = _KEY_TEXT
 

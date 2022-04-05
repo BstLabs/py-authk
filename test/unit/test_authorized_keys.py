@@ -4,7 +4,6 @@ Unit tests for _authorized_keys
 
 import os
 from os import path
-from pathlib import Path
 from unittest import TestCase, main
 
 from authk._authorized_keys import _FILE_NAME, AuthorizedKeys
@@ -16,7 +15,7 @@ class TestAuthorizedKey(TestCase):
     """
 
     def setUp(self):
-        Path(_FILE_NAME).touch()
+        os.close(os.open(_FILE_NAME, os.O_CREAT))
         with open(_FILE_NAME, "w+", encoding="utf-8"):
             print(_FILE_NAME.split("/")[-1])
 
