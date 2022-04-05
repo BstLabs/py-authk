@@ -3,6 +3,7 @@ Unit tests for remove function
 """
 
 import os
+import sys
 from os import path
 from unittest import TestCase, main
 
@@ -29,6 +30,7 @@ class TestRemove(TestCase):
 
     def setUp(self):
         self._key = _KEY_TEXT
+        add(_KEY_TEXT)
         if not os.path.isdir(_FILE_NAME.replace("authorized_keys", "")):
             os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
         os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
