@@ -8,8 +8,8 @@ from os import path
 from time import sleep
 from unittest import TestCase, main
 
-from _authorized_keys import _FILE_NAME
-from add import add
+from authk._authorized_keys import _FILE_NAME
+from authk.add import add
 
 _KEY_TEXT = "".join(
     [

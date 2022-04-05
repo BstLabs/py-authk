@@ -6,7 +6,7 @@ import os
 from os import path
 from unittest import TestCase, main
 
-from _authorized_keys import _FILE_NAME, AuthorizedKeys
+from authk._authorized_keys import _FILE_NAME, AuthorizedKeys
 
 
 class TestAuthorizedKey(TestCase):

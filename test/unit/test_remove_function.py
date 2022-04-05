@@ -6,9 +6,9 @@ import os
 from os import path
 from unittest import TestCase, main
 
-from _authorized_keys import _FILE_NAME
-from add import add
-from remove import remove
+from authk._authorized_keys import _FILE_NAME
+from authk.add import add
+from authk.remove import remove
 
 _KEY_TEXT = "".join(
     [
