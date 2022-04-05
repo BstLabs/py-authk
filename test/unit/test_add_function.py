@@ -31,6 +31,7 @@ class TestAdd(TestCase):
     def setUp(self):
         print("setting up...")
         self._key = _KEY_TEXT
+        os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
         os.close(os.open(_FILE_NAME, os.O_CREAT))
         with open(_FILE_NAME, "w+", encoding="utf-8"):
             print(f'{_FILE_NAME.split("/")[-1]} created')

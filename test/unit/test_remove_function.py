@@ -28,6 +28,7 @@ class TestRemove(TestCase):
     """
 
     def setUp(self):
+        os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
         os.close(os.open(_FILE_NAME, os.O_CREAT))
         add(_KEY_TEXT)
         self._key = _KEY_TEXT
