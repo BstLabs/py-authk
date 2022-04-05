@@ -12,9 +12,6 @@ from sshpubkeys import AuthorizedKeysFile
 
 _FILE_NAME: Final[str] = os.path.expanduser("~/.ssh/authorized_keys")
 
-# TODO: check for /.ssh directory existence
-# TODO: check for authorized_keys permissions
-
 
 class AuthorizedKeys:
     """
