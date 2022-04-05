@@ -7,7 +7,7 @@ That makes it user friendly and secure.
 
 AuthK was developed by [BST LABS](https://github.com/BstLabs/) as an open source generic infrastructure foundation for the cloud version of Python run-time within the scope of the [Cloud AI Operating System (CAIOS)](http://caios.io) project.
 
-For details about the AuthK rationale and source code, refer to [AuthK](https://github.com/BstLabs/authk/tree/main) Github repository.
+For details about the AuthK rationale and source code, refer to [AuthK](https://github.com/BstLabs/py-authk/) Github repository.
 
 ## Installation
 

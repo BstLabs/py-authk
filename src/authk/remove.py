@@ -2,9 +2,8 @@
 Removes key from authorized_keys
 """
 
+from _authorized_keys import AuthorizedKeys
 from sshpubkeys import SSHKey
-
-from authk._authorized_keys import AuthorizedKeys
 
 
 def remove(key_txt: str) -> None:
@@ -18,8 +17,7 @@ def remove(key_txt: str) -> None:
         None
 
     """
-    key = SSHKey(key_txt)
+    key = SSHKey(key_txt, strict=True)
     with AuthorizedKeys() as aks:
         del aks[key.comment]
-    print(f'{key.comment} removed')
-    
+    print(f"{key.comment} sucessfully removed")
