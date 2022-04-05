@@ -4,6 +4,7 @@ Unit tests for add function
 
 
 import os
+import sys
 from os import path
 from time import sleep
 from unittest import TestCase, main
@@ -31,10 +32,15 @@ class TestAdd(TestCase):
     def setUp(self):
         print("setting up...")
         self._key = _KEY_TEXT
-        os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
+        if not os.path.isdir(_FILE_NAME.replace("authorized_keys", "")):
+            os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
         os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
-        with open(_FILE_NAME, "w+", encoding="utf-8"):
-            print(f'{_FILE_NAME.split("/")[-1]} created')
+        if os.path.isfile(_FILE_NAME):
+            with open(_FILE_NAME, "w+", encoding="utf-8"):
+                print(f'{_FILE_NAME.split("/")[-1]} created')
+        else:
+            print("Something wrong happened")
+            sys.exit(-1)
 
     def tearDown(self):
         print("tear down...")
