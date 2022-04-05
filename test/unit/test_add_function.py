@@ -31,6 +31,7 @@ class TestAdd(TestCase):
     def setUp(self):
         print("setting up...")
         self._key = _KEY_TEXT
+        open(_FILE_NAME, "a", encoding="utf-8").close()
         with open(_FILE_NAME, "w+", encoding="utf-8"):
             print(f'{_FILE_NAME.split("/")[-1]} created')
 

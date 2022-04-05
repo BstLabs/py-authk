@@ -15,6 +15,7 @@ class TestAuthorizedKey(TestCase):
     """
 
     def setUp(self):
+        open(_FILE_NAME, "a", encoding="utf-8").close()
         with open(_FILE_NAME, "w+", encoding="utf-8"):
             print(_FILE_NAME.split("/")[-1])
 

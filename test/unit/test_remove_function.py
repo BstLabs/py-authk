@@ -28,6 +28,7 @@ class TestRemove(TestCase):
     """
 
     def setUp(self):
+        open(_FILE_NAME, "a", encoding="utf-8").close()
         add(_KEY_TEXT)
         self._key = _KEY_TEXT
 
