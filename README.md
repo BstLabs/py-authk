@@ -1,6 +1,6 @@
 # AuthK
 
-AuthK is a lightweight Python library to handle ssh keys directly from CLI.
+AuthK is a lightweight Python library to handle ssh keys within authorized_keys file directly from CLI.
 
 It's built on top of [DynaCLI](https://pypi.org/project/dynacli/) and [sshpubkeys](https://pypi.org/project/sshpubkeys/).
 That makes it user friendly and secure.
@@ -20,7 +20,7 @@ pip3 install authk
 ## Usage
 
 ```bash
-$ ./authk -h
+$ authk -h
 usage: authk [-h] [-v] {add, remove} ...
 
 SSHD authorized_keys file handling utility
@@ -29,17 +29,18 @@ positional arguments:
   {add, remove}
     add        Add key to authorized_keys list
     remove     Remove key from the authorized_keys list
+
 optional arguments:
   -h, --help     show this help message and exit
   -v, --version  show program's version number and exit
 ```
 
 ```bash
-$ ./authk add <key_text>
-Key sucessfully added
+$ authk add <key_text>
+<user@myhost.com> sucessfully added
 
-$ ./authk remove <key_txt>
-<key_text> removed
+$ authk remove <key_txt>
+<user@myhost.com> sucessfully removed
 ```
 
 ## License
