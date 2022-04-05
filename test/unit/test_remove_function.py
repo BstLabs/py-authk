@@ -10,7 +10,7 @@ from _authorized_keys import _FILE_NAME
 from add import add
 from remove import remove
 
-KEY_TEXT = "".join(
+_KEY_TEXT = "".join(
     [
         "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/",
         "BWDSUGPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVk",
@@ -28,8 +28,8 @@ class TestRemove(TestCase):
     """
 
     def setUp(self):
-        add(KEY_TEXT)
-        self._key = KEY_TEXT
+        add(_KEY_TEXT)
+        self._key = _KEY_TEXT
 
     def tearDown(self):
         if path.exists(_FILE_NAME):

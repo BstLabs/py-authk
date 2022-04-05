@@ -11,7 +11,7 @@ from unittest import TestCase, main
 from _authorized_keys import _FILE_NAME
 from add import add
 
-KEY_TEXT = "".join(
+_KEY_TEXT = "".join(
     [
         "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/",
         "BWDSUGPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVk",
@@ -30,7 +30,7 @@ class TestAdd(TestCase):
 
     def setUp(self):
         print("setting up...")
-        self._key = KEY_TEXT
+        self._key = _KEY_TEXT
         with open(_FILE_NAME, "w+", encoding="utf-8"):
             print(f'{_FILE_NAME.split("/")[-1]} created')
 
