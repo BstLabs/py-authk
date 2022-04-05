@@ -22,7 +22,7 @@ class TestAuthorizedKey(TestCase):
         if path.exists(_FILE_NAME):
             os.remove(_FILE_NAME)
 
-    def test_if_file_name_exists(self):
+    def test_if__FILE_NAME_exists(self):
         self.assertTrue(path.isfile(_FILE_NAME), "Not file")
 
     def test_if_supresses_filenotfounderror(self):

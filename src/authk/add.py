@@ -3,9 +3,8 @@ Adds key to authorized_keys
 """
 
 
+from _authorized_keys import AuthorizedKeys
 from sshpubkeys import SSHKey
-
-from authk._authorized_keys import AuthorizedKeys
 
 
 def add(key_txt: str) -> None:

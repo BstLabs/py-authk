@@ -13,7 +13,7 @@ from dynacli import main as dynamain
 cwd = os.path.dirname(os.path.realpath(__file__))
 
 
-search_path = [cwd]
+search_path = [cwd, f'{cwd}/src/authk']
 sys.path.extend(search_path)
 
 _map = {

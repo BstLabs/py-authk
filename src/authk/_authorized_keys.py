@@ -5,6 +5,7 @@ Deals with file operations. Adds functionality for context manager.
 import contextlib
 import os
 import shutil
+from pathlib import Path
 from typing import Final
 
 from sshpubkeys import AuthorizedKeysFile
@@ -34,7 +35,8 @@ class AuthorizedKeys:
         with open(_FILE_NAME, "a", encoding="utf-8") as file:
             payload = "\n".join([str(key.keydata) for key in self._keys.values()])
             file.write(payload)
-        shutil.chown(_FILE_NAME, "ssm-user", "ssm-user")
-        os.chmod(_FILE_NAME, 0o644)
+        file_info = Path(_FILE_NAME)
+        shutil.chown(_FILE_NAME, file_info.owner(), file_info.group())
+        os.chmod(_FILE_NAME, 0o600)
         if all([exception_type, exception_value, traceback]):
             print(exception_type, exception_value, traceback, end="\n")

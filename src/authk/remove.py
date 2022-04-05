@@ -2,7 +2,7 @@
 Removes key from authorized_keys
 """
 
-from authk._authorized_keys import AuthorizedKeys
+from _authorized_keys import AuthorizedKeys
 from sshpubkeys import SSHKey
 
 
