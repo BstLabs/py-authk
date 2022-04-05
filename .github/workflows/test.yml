@@ -21,4 +21,4 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: pip install flit==3.6.0
       - run: flit install
-      - run: cd test/unit; python3 -m unittest test/unit/*.py
+      - run: cd test/unit; python3 -m unittest *.py
