@@ -28,10 +28,16 @@ class TestRemove(TestCase):
     """
 
     def setUp(self):
-        os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
-        os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
-        add(_KEY_TEXT)
         self._key = _KEY_TEXT
+        if not os.path.isdir(_FILE_NAME.replace("authorized_keys", "")):
+            os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
+        os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
+        if os.path.isfile(_FILE_NAME):
+            with open(_FILE_NAME, "w+", encoding="utf-8"):
+                print(f'{_FILE_NAME.split("/")[-1]} created')
+        else:
+            print("Something wrong happened")
+            sys.exit(-1)
 
     def tearDown(self):
         if path.exists(_FILE_NAME):
