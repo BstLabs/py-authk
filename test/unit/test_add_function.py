@@ -4,12 +4,13 @@ Unit tests for add function
 
 
 import os
+import sys
 from os import path
 from time import sleep
 from unittest import TestCase, main
 
-from _authorized_keys import _FILE_NAME
-from add import add
+from authk._authorized_keys import _FILE_NAME
+from authk.add import add
 
 _KEY_TEXT = "".join(
     [
@@ -31,8 +32,15 @@ class TestAdd(TestCase):
     def setUp(self):
         print("setting up...")
         self._key = _KEY_TEXT
-        with open(_FILE_NAME, "w+", encoding="utf-8"):
-            print(f'{_FILE_NAME.split("/")[-1]} created')
+        if not os.path.isdir(_FILE_NAME.replace("authorized_keys", "")):
+            os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
+        os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
+        if os.path.isfile(_FILE_NAME):
+            with open(_FILE_NAME, "w+", encoding="utf-8"):
+                print(f'{_FILE_NAME.split("/")[-1]} created')
+        else:
+            print("Something wrong happened")
+            sys.exit(-1)
 
     def tearDown(self):
         print("tear down...")

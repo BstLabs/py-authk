@@ -2,8 +2,9 @@
 Removes key from authorized_keys
 """
 
-from _authorized_keys import AuthorizedKeys
 from sshpubkeys import SSHKey
+
+from authk._authorized_keys import AuthorizedKeys
 
 
 def remove(key_txt: str) -> None:
