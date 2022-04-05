@@ -1,0 +1,48 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "authk"
+authors = [{name = "BST Labs", email = "bstlabs@caios.io"}]
+readme = "README.md"
+license = {file = "LICENSE.md"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+requires-python = ">=3.8"
+dependencies = [
+    "dynacli >= 1.0.7",
+    "sshpubkeys >= 3.3.1",
+]
+
+
+[project.urls]
+Source = "https://github.com/bstlabs/py-authk"
+Home = "https://github.com/bstlabs/authk"
+
+
+[project.optional-dependencies]
+doc = ["mkdocs-material >=8.1.2"]
+dev = [
+    "black >=22.3.0",
+    "pylint >=2.12.2",
+    "isort >=5.9.3",
+    "autoflake >=1.4",
+    "flake8 >=4.0.1",
+    "pre-commit >=2.17.0"
+    ]
+
+[project.scripts]
+authk = "authk._authk:main"
+
+[tool.isort]
+profile = "black"
+py_version = 39
+skip = [".gitignore", ".dockerignore"]
+extend_skip = [".md", ".json"]
+skip_glob = ["docs/*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
