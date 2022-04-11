@@ -10,7 +10,8 @@ from typing import Final
 
 from sshpubkeys import AuthorizedKeysFile
 
-_FILE_NAME: Final[str] = os.path.expanduser("~/.ssh/authorized_keys")
+_SSH_DIR: Final[str] = os.path.expanduser("~/.ssh")
+_FILE_NAME: Final[str] = os.path.join(_SSH_DIR, "authorized_keys")
 
 
 class AuthorizedKeys:
@@ -29,6 +30,9 @@ class AuthorizedKeys:
         return self._keys
 
     def __exit__(self, exception_type, exception_value, traceback):
+        if not os.path.exists(_SSH_DIR):
+            os.mkdir(_SSH_DIR)
+            os.chmod(_SSH_DIR, 0o700)
         with open(_FILE_NAME, "a", encoding="utf-8") as file:
             payload = "\n".join([str(key.keydata) for key in self._keys.values()])
             file.write(payload)
