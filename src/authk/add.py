@@ -21,6 +21,10 @@ def add(key_txt: str) -> None:
     """
     key = SSHKey(key_txt, strict=True)
     with AuthorizedKeys() as aks:
-        if key.keydata not in aks.items():
+        existing_key = aks.get(key.comment)
+        if not existing_key:
             aks[key.comment] = key
-    print(f"{key.comment} succesfully added")
+            print(f"{key.comment} succesfully added")
+        elif existing_key & existing_key != key:
+            aks[key.comment] = key
+            print(f"{key.comment} succesfully updated")
