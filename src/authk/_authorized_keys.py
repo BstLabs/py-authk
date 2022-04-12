@@ -33,6 +33,8 @@ class AuthorizedKeys:
         if not os.path.exists(_SSH_DIR):
             os.mkdir(_SSH_DIR)
             os.chmod(_SSH_DIR, 0o700)
+            dir_info = Path(_SSH_DIR)
+            shutil.chown(_SSH_DIR, dir_info.owner(), dir_info.group())
         with open(_FILE_NAME, "a", encoding="utf-8") as file:
             payload = "\n".join([str(key.keydata) for key in self._keys.values()])
             file.write(payload)
