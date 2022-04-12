@@ -25,6 +25,6 @@ def add(key_txt: str) -> None:
         if not existing_key:
             aks[key.comment] = key
             print(f"{key.comment} succesfully added")
-        elif existing_key & existing_key != key:
+        elif existing_key != key:
             aks[key.comment] = key
             print(f"{key.comment} succesfully updated")
