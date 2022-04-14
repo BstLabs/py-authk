@@ -35,7 +35,7 @@ class TestRemove(TestCase):
         os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
         if os.path.isfile(_FILE_NAME):
             with open(_FILE_NAME, "w+", encoding="utf-8"):
-                print(f'{_FILE_NAME.split("/")[-1]} created')
+                print(f'{_FILE_NAME.split("/.")[-1]} created')
             add(_KEY_TEXT)
         else:
             print("Something wrong happened")

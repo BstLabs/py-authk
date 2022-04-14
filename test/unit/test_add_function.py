@@ -5,11 +5,13 @@ Unit tests for add function
 
 import os
 import sys
+from contextlib import redirect_stdout
+from io import StringIO
 from os import path
 from time import sleep
 from unittest import TestCase, main
 
-from authk._authorized_keys import _FILE_NAME
+from authk._authorized_keys import _FILE_NAME, AuthorizedKeys
 from authk.add import add
 
 _KEY_TEXT = "".join(
@@ -37,7 +39,7 @@ class TestAdd(TestCase):
         os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
         if os.path.isfile(_FILE_NAME):
             with open(_FILE_NAME, "w+", encoding="utf-8"):
-                print(f'{_FILE_NAME.split("/")[-1]} created')
+                print(f'{_FILE_NAME.split("/.")[-1]} created')
         else:
             print("Something wrong happened")
             sys.exit(-1)
@@ -56,6 +58,26 @@ class TestAdd(TestCase):
         add(self._key)
         sleep(1)
         add(self._key)
+
+    def test_stdout_of_add(self):
+        _stdout_ = StringIO()
+        with redirect_stdout(_stdout_):
+            add(_KEY_TEXT)
+        self.assertEqual(
+            _stdout_.getvalue(), "schacon@mylaptop.local succesfully added\n"
+        )
+
+    def test_result_of_double_add(self):
+        add(_KEY_TEXT)
+        result = add(_KEY_TEXT)
+        self.assertEqual(
+            result,
+            "schacon@mylaptop.local exists",
+        )
+
+    def test_if_aks_has_get_method(self):
+        with AuthorizedKeys() as aks:
+            self.assertTrue("get" in dir(aks))
 
 
 if __name__ == "__main__":

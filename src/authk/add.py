@@ -2,13 +2,14 @@
 Adds key to authorized_keys
 """
 
+from typing import Optional
 
 from sshpubkeys import SSHKey
 
 from authk._authorized_keys import AuthorizedKeys
 
 
-def add(key_txt: str) -> None:
+def add(key_txt: str) -> Optional[str]:
     """
     Add key to authorized_keys list
 
@@ -19,12 +20,15 @@ def add(key_txt: str) -> None:
         None
 
     """
+    return_value = None
     key = SSHKey(key_txt, strict=True)
     with AuthorizedKeys() as aks:
-        existing_key = aks.get(key.comment)
-        if not existing_key:
+        if existing_key := aks.get(key.comment):
+            aks.setdefault(key.comment, key)
+            print(f"{key.comment} exists")
+            return_value = "exists"
+        elif not existing_key:
             aks[key.comment] = key
             print(f"{key.comment} succesfully added")
-        elif existing_key != key:
-            aks[key.comment] = key
-            print(f"{key.comment} succesfully updated")
+            return_value = "sucessfully added"
+    return f"{key.comment} {return_value}" if return_value else None
