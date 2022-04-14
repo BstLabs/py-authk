@@ -5,8 +5,6 @@ Unit tests for add function
 
 import os
 import sys
-from contextlib import redirect_stdout
-from io import StringIO
 from os import path
 from time import sleep
 from unittest import TestCase, main
@@ -60,20 +58,13 @@ class TestAdd(TestCase):
         add(self._key)
 
     def test_stdout_of_add(self):
-        _stdout_ = StringIO()
-        with redirect_stdout(_stdout_):
-            add(_KEY_TEXT)
-        self.assertEqual(
-            _stdout_.getvalue(), "schacon@mylaptop.local succesfully added\n"
-        )
+        result = add(_KEY_TEXT)
+        self.assertEqual(result, "schacon@mylaptop.local sucessfully added")
 
     def test_result_of_double_add(self):
         add(_KEY_TEXT)
         result = add(_KEY_TEXT)
-        self.assertEqual(
-            result,
-            "schacon@mylaptop.local exists",
-        )
+        self.assertEqual(result, "schacon@mylaptop.local exists")
 
     def test_if_aks_has_get_method(self):
         with AuthorizedKeys() as aks:

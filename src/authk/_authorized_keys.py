@@ -29,20 +29,28 @@ class AuthorizedKeys:
                 self._keys[key.comment] = key
         return self._keys
 
-    def _set_up_file(self, ssh_dir, file_name):
+    def _create_ssh_dir(self, ssh_dir):
         if not os.path.exists(ssh_dir):
             os.mkdir(ssh_dir)
             os.chmod(ssh_dir, 0o700)
             dir_info = Path(ssh_dir)
             shutil.chown(ssh_dir, dir_info.owner(), dir_info.group())
-        with open(file_name, "a", encoding="utf-8") as file:
-            payload = "\n".join([str(key.keydata) for key in self._keys.values()])
-            file.write(payload)
+            print(f"Missing directory created at {ssh_dir}")
+        return "Success"
+
+    def _change_file_ownership(self, file_name):
         file_info = Path(file_name)
         shutil.chown(file_name, file_info.owner(), file_info.group())
         os.chmod(file_name, 0o600)
 
+    def _create_or_update_authoried_keys(self, file_name):
+        with open(file_name, "a", encoding="utf-8") as file:
+            payload = "\n".join([str(key.keydata) for key in self._keys.values()])
+            file.write(payload)
+        self._change_file_ownership(file_name)
+
     def __exit__(self, exception_type, exception_value, traceback):
-        self._set_up_file(_SSH_DIR, _FILE_NAME)
+        self._create_ssh_dir(_SSH_DIR)
+        self._create_or_update_authoried_keys(_FILE_NAME)
         if all([exception_type, exception_value, traceback]):
             print(exception_type, exception_value, traceback, end="\n")
