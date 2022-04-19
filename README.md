@@ -45,4 +45,4 @@ $ authk remove <key_txt>
 
 ## License
 
-MIT License, Copyright (c) 2021-2022 BST LABS. See [LICENSE](LICENSE) file.
+MIT License, Copyright (c) 2021-2022 BST LABS. See [LICENSE](https://github.com/BstLabs/py-authk/blob/main/LICENSE.md) file.
