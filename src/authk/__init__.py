@@ -3,6 +3,6 @@
 from .add import add
 from .remove import remove
 
-__version__ = "1.0.3"
+__version__ = "1.0.4b"
 
 __all__ = ["add", "remove"]
