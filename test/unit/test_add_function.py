@@ -6,11 +6,14 @@ Unit tests for add function
 import os
 import sys
 from os import path
-from time import sleep
-from unittest import TestCase, main
+from pathlib import Path
+from typing import Final
+from unittest import TestCase, main, mock
 
-from authk._authorized_keys import _FILE_NAME, AuthorizedKeys
+from authk._authorized_keys import AuthorizedKeys
 from authk.add import add
+
+_TEMP_FILE: Final[str] = os.path.expanduser(f"{Path.home()}/.temp_test/authorized_keys")
 
 _KEY_TEXT = "".join(
     [
@@ -24,6 +27,7 @@ _KEY_TEXT = "".join(
 )
 
 
+@mock.patch("authk._authorized_keys._FILE_NAME", _TEMP_FILE)
 class TestAdd(TestCase):
     """
     Unit tests for add function
@@ -32,39 +36,31 @@ class TestAdd(TestCase):
     def setUp(self):
         print("setting up...")
         self._key = _KEY_TEXT
-        if not os.path.isdir(_FILE_NAME.replace("authorized_keys", "")):
-            os.mkdir(_FILE_NAME.replace("authorized_keys", ""))
-        os.close(os.open(_FILE_NAME, os.O_RDWR | os.O_CREAT))
-        if os.path.isfile(_FILE_NAME):
-            with open(_FILE_NAME, "w+", encoding="utf-8"):
-                print(f'{_FILE_NAME.split("/.")[-1]} created')
+        if not os.path.isdir(_TEMP_FILE.replace("authorized_keys", "")):
+            os.mkdir(_TEMP_FILE.replace("authorized_keys", ""))
+        os.close(os.open(_TEMP_FILE, os.O_RDWR | os.O_CREAT))
+        if os.path.isfile(_TEMP_FILE):
+            with open(_TEMP_FILE, "w+", encoding="utf-8"):
+                print(f'{_TEMP_FILE.split("/.")[-1]} created')
         else:
             print("Something wrong happened")
             sys.exit(-1)
 
     def tearDown(self):
         print("tear down...")
-        if path.exists(_FILE_NAME):
-            os.remove(_FILE_NAME)
+        if path.exists(_TEMP_FILE):
+            os.remove(_TEMP_FILE)
 
         print()
 
-    def test_add(self):
-        add(self._key)
-
-    def test_doubling_key(self):
-        add(self._key)
-        sleep(1)
-        add(self._key)
-
     def test_stdout_of_add(self):
-        result = add(_KEY_TEXT)
-        self.assertEqual(result, "schacon@mylaptop.local sucessfully added")
+        result = add(self._key)
+        assert result == "schacon@mylaptop.local sucessfully added"
 
     def test_result_of_double_add(self):
-        add(_KEY_TEXT)
-        result = add(_KEY_TEXT)
-        self.assertEqual(result, "schacon@mylaptop.local exists")
+        add(self._key)
+        result = add(self._key)
+        assert result == "schacon@mylaptop.local exists"
 
     def test_if_aks_has_get_method(self):
         with AuthorizedKeys() as aks:

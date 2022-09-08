@@ -24,6 +24,7 @@ def add(key_txt: str) -> Optional[str]:
     key = SSHKey(key_txt, strict=True)
     with AuthorizedKeys() as aks:
         existing_key = aks.get(key.comment)
+        return_value = ""
         if existing_key:
             aks.setdefault(key.comment, key)
             print(f"{key.comment} exists")
@@ -32,4 +33,4 @@ def add(key_txt: str) -> Optional[str]:
             aks[key.comment] = key
             print(f"{key.comment} succesfully added")
             return_value = "sucessfully added"
-    return f"{key.comment} {return_value}" if return_value else None
+    return f"{key.comment} {return_value}"
