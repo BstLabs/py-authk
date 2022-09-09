@@ -17,7 +17,7 @@ search_path = [cwd]
 sys.path.extend(search_path)
 
 _map = {
-    "__version__": "1.0.4b",
+    "__version__": "1.0.4b1",
     "__doc__": """
 SSHD authorized_keys file handling utility""",
 }
