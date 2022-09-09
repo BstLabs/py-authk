@@ -46,7 +46,7 @@ class AuthorizedKeys:
         os.chmod(file_name, 0o600)
 
     def _create_or_update_authoried_keys(self, file_name: str) -> None:
-        with open(file_name, "r+", encoding="utf-8") as file:
+        with open(file_name, "w", encoding="utf-8") as file:
             payload = "\n".join([str(key.keydata) for key in self._keys.values()])
             file.write(f"{payload}\n")
         self._change_file_ownership(file_name)
