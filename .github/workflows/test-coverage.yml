@@ -37,7 +37,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Build coverage file
         run: |
-          pytest --cov-config=.coveragerc --junitxml=pytest.xml --cov-report=term-missing:skip-covered  tests/unit/ > pytest-coverage.txt
+          pytest --cov-config=.coveragerc --junitxml=pytest.xml --cov=src/authk tests/unit/ > pytest-coverage.txt
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
         with:
