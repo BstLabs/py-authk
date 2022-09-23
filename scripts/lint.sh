@@ -4,5 +4,5 @@ set -e
 set -x
 
 flake8 src
-black src test --check --diff
-isort src test --check --diff
+black src tests --check --diff
+isort src tests --check --diff
