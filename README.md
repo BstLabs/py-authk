@@ -1,5 +1,7 @@
 # AuthK
 
+[![Coverage](https://img.shields.io/badge/Coverage-72%25-yellow.svg)](https://github.com/BstLabs/py-authk/blob/d0e772deb5de5dfae4002b0cee605b783d0cd467/README.md)
+
 AuthK is a lightweight Python library to handle ssh keys within authorized_keys file directly from CLI.
 
 It's built on top of [DynaCLI](https://pypi.org/project/dynacli/) and [sshpubkeys](https://pypi.org/project/sshpubkeys/).
