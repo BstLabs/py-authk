@@ -35,6 +35,6 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Build coverage file
         run: |
-          pytest --cache-clear --cov=src/authk test/ > pytest-coverage.txt
+          pytest --cache-clear --no-cov-on-fail --cov=src/authk test/unit/ > pytest-coverage.txt
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
