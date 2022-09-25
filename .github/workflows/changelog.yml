@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
       - uses: BobAnkh/auto-generate-changelog@master
         with:
-          ACCESS_TOKEN: ${{secrets.CHANGELOG}}
+          ACCESS_TOKEN: ${{secrets.CHANGELOG_AUTHK}}
           PATH: "CHANGELOG.md"
           COMMIT_MESSAGE: "Docs(changelog): update release notes"
           TYPE: "Feat:Feature,Fix:Bug Fixes,Fixes:Bug Fixes,Fixed:Bug Fixes,Docs:Documentation,Refactor:Refactor,Perf:Performance Improvements"
