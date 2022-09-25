@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.6, pytest-7.1.3, pluggy-1.0.0
+rootdir: /home/ssm-user/caios-dev-orkhan/py-authk
+plugins: cov-3.0.0
+collected 7 items
+
+tests/unit/test_add_function.py ...                                      [ 42%]
+tests/unit/test_authorized_keys.py ...                                   [ 85%]
+tests/unit/test_remove_function.py .                                     [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/coverage/inorout.py:472
+  /home/ssm-user/caios-dev-orkhan/py-authk/.venv/lib/python3.9/site-packages/coverage/inorout.py:472: CoverageWarning: --include is ignored because --source is set (include-ignored)
+    self.warn("--include is ignored because --source is set", slug="include-ignored")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--- generated xml file: /home/ssm-user/caios-dev-orkhan/py-authk/pytest.xml ----
+
+----------- coverage: platform linux, python 3.9.6-final-0 -----------
+Name                            Stmts   Miss  Cover
+---------------------------------------------------
+src/authk/_authk.py                17     17     0%
+src/authk/_authorized_keys.py      41      6    85%
+src/authk/add.py                   17      0   100%
+src/authk/remove.py                 7      0   100%
+---------------------------------------------------
+TOTAL                              82     23    72%
+
+========================= 7 passed, 1 warning in 0.34s =========================
