@@ -57,6 +57,3 @@ class TestAuthorizedKey(TestCase):
         rmtree(_TEMP_DIR)
         result = AKS._create_ssh_dir(_TEMP_DIR)
         assert result == "Success"
-
-if __name__ == "__main__":
-    main()
