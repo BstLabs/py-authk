@@ -37,7 +37,8 @@ class AuthorizedKeys:
             dir_info = Path(ssh_dir)
             shutil.chown(ssh_dir, dir_info.owner(), dir_info.group())
             print(f"Missing directory created at {ssh_dir}")
-        return "Success"
+            return "Success"
+        return "Exists"
 
     @staticmethod
     def _change_file_ownership(file_name: str) -> None:
@@ -54,5 +55,4 @@ class AuthorizedKeys:
     def __exit__(self, exception_type, exception_value, traceback) -> None:
         self._create_ssh_dir(_SSH_DIR)
         self._create_or_update_authoried_keys(_FILE_NAME)
-        if all([exception_type, exception_value, traceback]):
-            print(exception_type, exception_value, traceback, end="\n")
+        print(f"{_FILE_NAME} created or updated.")
