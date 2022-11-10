@@ -2,26 +2,6 @@
 
 ## [v1.0.4](https://github.com/BstLabs/py-authk/releases/tag/v1.0.4) - 2022-11-10 07:27:34
 
-## What's Changed
-* Refactor(code-coverage): Increased code coverage by @orkhanshirin in https://github.com/BstLabs/py-authk/pull/39
-
-**Full Changelog**: https://github.com/BstLabs/py-authk/compare/v1.0.3...v1.0.4
-
-### Feature
-
-- workflow:
-  - Activated coverage check (#36) ([458baa7](https://github.com/BstLabs/py-authk/commit/458baa7cd65c499b1473a196c327ae2400983b37)) ([#36](https://github.com/BstLabs/py-authk/pull/36))
-
-### Documentation
-
-- changelog:
-  - update release notes ([31729c0](https://github.com/BstLabs/py-authk/commit/31729c0f85f1838a0b97ef571454ef0eb54bae9e))
-
-### Refactor
-
-- code-coverage:
-  - Increased code coverage (#39) ([968ed26](https://github.com/BstLabs/py-authk/commit/968ed262a43ec16413ae2a006893872dff445140)) ([#39](https://github.com/BstLabs/py-authk/pull/39))
-
 ## [v1.0.4b1](https://github.com/BstLabs/py-authk/releases/tag/v1.0.4b1) - 2022-09-09 12:33:56
 
 *No description*
