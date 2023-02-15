@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## [v1.0.4](https://github.com/BstLabs/py-authk/releases/tag/v1.0.4) - 2022-11-10 07:27:34
+
 ## [v1.0.4b1](https://github.com/BstLabs/py-authk/releases/tag/v1.0.4b1) - 2022-09-09 12:33:56
 
 *No description*
