@@ -20,12 +20,10 @@ def add(key_txt: str) -> Optional[str]:
         None
 
     """
-    return_value = None
     key = SSHKey(key_txt, strict=True)
     with AuthorizedKeys() as aks:
         existing_key = aks.get(key.comment)
-        return_value = ""
-        if existing_key:
+        if existing_key and existing_key.keydata == key.keydata:
             aks.setdefault(key.comment, key)
             print(f"{key.comment} exists")
             return_value = "exists"
