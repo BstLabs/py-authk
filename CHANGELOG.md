@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [v1.0.5b0](https://github.com/BstLabs/py-authk/releases/tag/v1.0.5b0) - 2023-02-15 16:11:22
+
+*No description*
+
+### Documentation
+
+- changelog:
+  - update release notes ([141d747](https://github.com/BstLabs/py-authk/commit/141d747d607cec315398dddfe3d0ffc062263304))
+  - update release notes ([85abadd](https://github.com/BstLabs/py-authk/commit/85abaddb9dae44022c7eaba17b3a06188b8225a9))
+
 ## [v1.0.4](https://github.com/BstLabs/py-authk/releases/tag/v1.0.4) - 2022-11-10 07:27:34
 
 ## [v1.0.4b1](https://github.com/BstLabs/py-authk/releases/tag/v1.0.4b1) - 2022-09-09 12:33:56
